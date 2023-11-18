@@ -1,4 +1,4 @@
-# salary_prediction
+# CS 4120/6120 Final Project: Salary Prediction Models
 
 ## Discrete Work 
 - Create NB Model
