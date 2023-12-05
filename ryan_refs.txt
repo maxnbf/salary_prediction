@@ -14,6 +14,7 @@ ideas for final stuff:
     Ascertain what our models found to be the most important terms
 
 Limitations:
+    - One imagines that were this model deployed, it would need constant retraining to reflect current market conditions
 
 Conclusions:
     - Job descriptions are maybe not the best predictor of salary, even if human read, since
