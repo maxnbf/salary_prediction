@@ -7,6 +7,8 @@ from nltk.stem import WordNetLemmatizer
 from nltk.stem import PorterStemmer
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import re
+import pandas as pd
+import matplotlib.pyplot as plt
 
 nltk.download("stopwords")
 stop_words = set(stopwords.words("english"))
@@ -155,3 +157,33 @@ def get_evaluation_metric(eval_func, all_pred_y, true_y, func_args=None):
 
         metrics.append(metric)
     return metrics
+
+def plot_accuracy_in_buckets(actual, preds):
+    """
+        Creates $5000 buckets for comparing the predicted salaries to their actual salaries, and plots the results
+
+        Parameters:
+            actual - list of test target values
+            preds - list of predicted target values
+    """
+    absolute_differences = [abs(actual - predicted) for actual, predicted in zip(actual, preds)]
+
+    # Combine the lists into a DataFrame
+    data = pd.DataFrame({'Predictions': preds, 'Actual Salaries': actual, 'Absolute Difference': absolute_differences})
+
+    # Define absolute difference buckets at intervals of 5000 up to 40000
+    difference_buckets = [0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000, float('inf')]
+
+    # Create a new column in the DataFrame to store the bucket for each absolute difference
+    data['Absolute Difference Bucket'] = pd.cut(data['Absolute Difference'], bins=difference_buckets, labels=['<5000', '<10000', '<15000', '<20000', '<25000', '<30000', '<35000', '<40000', '<45000', '<50000', ' >=50000'], right=False)
+
+    # Group the data by the absolute difference buckets and count the number of predictions in each bucket
+    bucket_counts = data.groupby('Absolute Difference Bucket').size().reset_index(name='Count')
+
+    # Plot the data
+    plt.bar(bucket_counts['Absolute Difference Bucket'], bucket_counts['Count'])
+    plt.xlabel('Absolute Difference Bucket')
+    plt.ylabel('Number of Predictions')
+    plt.title('Distribution of Predictions by Absolute Difference Bucket')
+    plt.xticks(fontsize=7)
+    plt.show()
