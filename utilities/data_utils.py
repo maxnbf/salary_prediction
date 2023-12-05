@@ -109,13 +109,6 @@ def filter_corpus_by_vocabulary(tokenized_sentences, vocabulary):
 
     return filtered_sentences
 
-def percent_of_predictions_in_range(actual, pred, range):
-    count = 0
-    for a, p in zip(actual, pred):
-        if abs(a-p) <= range:
-            count += 1
-    
-    return (count / len(pred)) * 100
 
 def pre_process_descriptions(descriptions):
     """_summary_
@@ -127,6 +120,15 @@ def pre_process_descriptions(descriptions):
     for desc in descriptions:
         res.append(remove_stopwords_numbers_punctionation_and_lemmatize(desc))
     return res
+
+
+def percent_of_predictions_in_range(actual, pred, range):
+    count = 0
+    for a, p in zip(actual, pred):
+        if abs(a-p) <= range:
+            count += 1
+    
+    return (count / len(pred)) * 100
 
 def predict_and_analyze(model, data, actuals): 
     preds = model.predict(data)
@@ -141,3 +143,15 @@ def predict_and_analyze(model, data, actuals):
     print("Percent of postings predicted within $10,000: ", "{:.2f}".format(percent_of_predictions_in_range(actuals, preds, 10000)))
 
     return preds
+
+def get_evaluation_metric(eval_func, all_pred_y, true_y, func_args=None):
+    metrics = []
+    for preds in all_pred_y:
+        
+        if func_args:
+            metric = eval_func(true_y, preds, func_args)
+        else:
+            metric = eval_func(true_y, preds)
+
+        metrics.append(metric)
+    return metrics
