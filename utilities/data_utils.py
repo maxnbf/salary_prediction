@@ -144,7 +144,7 @@ def predict_and_analyze(model, data, actuals):
     print("Percent of postings predicted within $5,000: ", "{:.2f}".format(percent_of_predictions_in_range(actuals, preds, 5000)))
     print("Percent of postings predicted within $10,000: ", "{:.2f}".format(percent_of_predictions_in_range(actuals, preds, 10000)))
 
-    return preds
+    return preds, mae, mse
 
 def get_evaluation_metric(eval_func, all_pred_y, true_y, func_args=None):
     metrics = []
