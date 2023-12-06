@@ -96,18 +96,6 @@ def lengths(desc):
     return len(desc)
 
 
-def filter_corpus_by_vocabulary(tokenized_sentences, vocabulary):
-    filtered_sentences = []
-    
-    vocab_set = set(vocabulary)
-    for sentence in tokenized_sentences:
-        s = tokenize(sentence)
-        filtered_sentence = [word for word in s if word in vocab_set]
-        filtered_sentences.append(" ".join(filtered_sentence))
-
-    return filtered_sentences
-
-
 def pre_process_descriptions(descriptions):
     """_summary_
 
@@ -121,6 +109,17 @@ def pre_process_descriptions(descriptions):
 
 
 def percent_of_predictions_in_range(actual, pred, range):
+    """
+        Calculates the percentage of predictions that were within a specific range of their actual targets
+
+        Parameters:
+            actual - list of actual salaries
+            pred - list of predicted salaries
+            range - value we are checking for delta in actual and pre
+
+        Return
+            percent of guesses in range
+    """
     count = 0
     for a, p in zip(actual, pred):
         if abs(a-p) <= range:
@@ -129,6 +128,19 @@ def percent_of_predictions_in_range(actual, pred, range):
     return (count / len(pred)) * 100
 
 def predict_and_analyze(model, data, actuals): 
+    """
+        Uses the given model to predict the results of the given data, and report metrics
+
+        Parameters:
+            model - specific model to test
+            data - featurized data that will be input into the model
+            actuals - target salary data
+
+        Return
+            preds - predictions of given data
+            mae - mean absolute error
+            mse - mean squared error
+    """
     preds = model.predict(data)
 
     mse = mean_squared_error(actuals, preds)
