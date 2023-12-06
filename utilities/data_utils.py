@@ -155,6 +155,18 @@ def predict_and_analyze(model, data, actuals):
     return preds, mae, mse
 
 def get_evaluation_metric(eval_func, all_pred_y, true_y, func_args=None):
+    """
+    Takes a list of predictions, the true values, and an evaluation function. Gets the performance
+    metric returned from the evaluation function for each prediction that was made.
+    Args:
+        eval_func (callable): evaluation metric to be called on the predictions
+        all_pred_y (list of list): all y predictions 
+        true_y (list): true_y values
+        func_args (any, optional): For evaluation functions that require an argument (max 1), pass it here. Defaults to None.
+
+    Returns:
+        list: the metric requested for each prediction
+    """
     metrics = []
     for preds in all_pred_y:
         
