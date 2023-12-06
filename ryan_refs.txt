@@ -1,8 +1,9 @@
+# code documentation
 https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html
-    - For SVR documentation
 https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html
-    - count CountVectorizer
 https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+
+# understanding SVM and SVR
 https://stats.stackexchange.com/questions/259018/meaning-of-epsilon-in-svm-regression
 https://stats.stackexchange.com/questions/31066/what-is-the-influence-of-c-in-svms-with-linear-kernel
 https://dataaspirant.com/svm-kernels/
