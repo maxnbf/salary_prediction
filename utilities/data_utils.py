@@ -98,16 +98,12 @@ def lengths(desc):
 
 def filter_corpus_by_vocabulary(tokenized_sentences, vocabulary):
     filtered_sentences = []
-    # i = 0
-
+    
     vocab_set = set(vocabulary)
     for sentence in tokenized_sentences:
         s = tokenize(sentence)
         filtered_sentence = [word for word in s if word in vocab_set]
         filtered_sentences.append(" ".join(filtered_sentence))
-        # if i % 100 == 0:
-        #     print(i)
-        # i+=1
 
     return filtered_sentences
 
