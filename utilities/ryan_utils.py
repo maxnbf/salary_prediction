@@ -4,8 +4,8 @@ import sklearn.metrics as smetrics
 import matplotlib.pyplot as plt
 
 def train_and_predict_SVR(kernel, X_train, y_train, X_test, c_values):
-    """_summary_
-
+    """
+    Train and predict multiple SVR models across different values of C.
     Args:
         kernel (string): The kernel function for SVR
         X_train (list of list): X_training data
@@ -14,7 +14,7 @@ def train_and_predict_SVR(kernel, X_train, y_train, X_test, c_values):
         c_values (list): list of c values to test for each SVR model
 
     Returns:
-        _type_: a list of models that were trained and a list of predictions that each model made on the x_test data
+        list, list: a list of models that were trained and a list of predictions that each model made on the x_test data
     """
     EPSILON_CONSTANT = 1000
 
@@ -28,7 +28,7 @@ def train_and_predict_SVR(kernel, X_train, y_train, X_test, c_values):
     return all_models, all_preds
 
 
-def graph_SVR_performance_by_C(title, all_preds, y_actual, C_values):
+def graph_SVR_performance_by_accuracy(title, all_preds, y_actual, C_values):
     """
     Graphs performance of SVR models by the quality of the predictions they made on the test data.
     'performance' is the percent of predictions they made within range of the actual data.
