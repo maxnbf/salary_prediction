@@ -8,19 +8,3 @@ https://stats.stackexchange.com/questions/31066/what-is-the-influence-of-c-in-sv
 https://dataaspirant.com/svm-kernels/
 https://en.wikipedia.org/wiki/Support_vector_machine
 https://www.baeldung.com/cs/ml-svm-c-parameter#:~:text=The%20Role%20of%20C%20in%20SVM&text=in%20SVM%20helps%20control%20the,points%20during%20the%20training%20process.&text=puts%20more%20emphasis%20on%20minimizing,leading%20to%20a%20narrower%20margin.
-
-
-ideas for final stuff:
-    Ascertain what our models found to be the most important terms
-
-Limitations:
-    - One imagines that were this model deployed, it would need constant retraining to reflect current market conditions
-
-Conclusions:
-    - Job descriptions are maybe not the best predictor of salary, even if human read, since
-    - 
-
-Future work:
-    Direct feature engineering (industry, location, job title keyword, etc..)
-    Use models that try to capture semantic meaning
-    Word Embeddings
